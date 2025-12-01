@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GIHUB_TOKEN }}
           publish_dir: ./deploy
           user_name: willow-sip
           user_email: wyrrrth.sip@gmail.com
