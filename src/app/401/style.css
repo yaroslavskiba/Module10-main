@@ -1,0 +1,25 @@
+.error-page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.error-page h1 {
+    font-size: 60px;
+}
+
+
+@media (max-width: 768px) {
+    .error-image{
+        width: 80px;
+        height: 80px;
+    }
+    .error-page h1 {
+        font-size: 20px;
+    }
+    
+}

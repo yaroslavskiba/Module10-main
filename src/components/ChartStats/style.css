@@ -1,0 +1,53 @@
+.statsChart{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+.chartBlock h3{
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chartBlock{
+    width: 50%;
+}
+
+.chartBlock>div{
+    background-color: var(--gray-900);
+    border: 1px solid var(--gray-400);
+    margin-top: 24px;
+    padding: 24px 0;
+    min-height: 480px;
+}
+
+
+.statsChart svg path{
+    fill: var(--chart-color) !important;
+}
+
+@media (max-width: 768px) {
+    .statsChart{
+        max-width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+    }
+    .statsChart .chartBlock {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    .statsChart .chartBlock ResponsiveContainer{
+        width: 100%;
+    }
+    .recharts-wrapper{
+        max-width: 100%;
+    }
+    svg.recharts-surface{
+        width: auto !important;
+        height: auto !important;
+    }
+}

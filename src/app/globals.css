@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  --accent: #FF8811;
+  --btn-hover: #08B94E;
+  --error: #ff554A;
+  --warning: #FFC14A;
+  --active-input: #7A44FF;
+}
+
+[data-theme='dark'] * {
+  --text-color: #fff;
+  --slider-circle: #FF8811;
+  --gray-900: #0E1223;
+  --gray-800: #151A2D;
+  --gray-700: #1B2037;
+  --gray-400: #384162;
+  --gray-100: #8791B7;
+  --chart-color: #2F3757;
+  --chart-dot: #bcc3e3;
+  --idle-small-text: #475175;
+}
+
+[data-theme='light'] * {
+  --text-color: #000;
+  --slider-circle: #FFFFFF;
+  --gray-900: #FAFAFA;
+  --gray-800: #F0F1F3;
+  --gray-700: #E0E2E7;
+  --gray-400: #858D9D;
+  --gray-100: #525D73;
+  --chart-color: #A3A9B6;
+  --chart-dot: #7b8094;
+  --idle-small-text: #667085;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--gray-700);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+.main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts {
+  margin: 0 auto;
+  width: 700px;
+  justify-self: end;
+  position: relative;
+  border: 2px solid var(--gray-400);
+  border-bottom: none;
+}
+
+svg path {
+  fill: var(--text-color);
+  vertical-align: middle;
+}
+
+svg.outline path{
+  fill: none;
+  stroke: var(--text-color);
+}
+
+#notification-root {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  gap: 10px;
+  z-index: 9999;
+  max-width: 400px;
+  min-width: 300px;
+  width: fit-content;
+  pointer-events: none;
+}
+
+#notification-root > * {
+  pointer-events: auto;
+}
+
+input, textarea{
+  border: 1px solid var(--gray-400) !important;
+  background: var(--gray-700) !important;
+  color: var(--text-color) !important;
+  padding: 8px 10px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  font-family: inherit;
+}
+input::placeholder, textarea::placeholder{
+  color: var(--idle-small-text) !important;
+}
+input:focus, textarea:focus{
+  outline: none !important;
+  border: 1px solid var(--active-input) !important;
+}
+input.error, textarea.error{
+  color: var(--error) !important;
+  border: 1px solid var(--error) !important;
+}
+.helper{
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0;
+  height: 25px;
+  font-size: 13px;
+}
+
+.helper.idle svg path{
+  width: 16px;
+  fill: var(--idle-small-text) !important;
+}
+.helper.error svg path{
+  fill: var(--error) !important;
+}
+.helper.good svg path{
+  fill: var(--accent) !important;
+}
+
+.helper.error{
+  display: flex;
+  color: var(--error) !important;
+}
+.helper.idle{
+  display: flex;
+  color: var(--idle-small-text) !important;
+}
+.helper.good{
+  display: flex;
+  color: var(--accent) !important;
+}
+
+@media (max-width: 480px) {
+  #notification-root {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-page{
+    display: block;
+  }
+  .posts {
+    width: 100%;
+    border: none;
+    border-top: 2px solid var(--gray-400);
+  }
+}

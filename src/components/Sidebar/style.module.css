@@ -1,0 +1,72 @@
+.sidebar {
+    width: 325px;
+    min-width: 300px;
+    margin: 24px 0 0 40px;
+    justify-self: start;
+    align-self: start;
+    position: absolute;
+    top: -136px;
+    left: 700px;
+}
+
+.sidebar h4{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.recPeople,
+.recCommunities {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: var(--gray-900);
+    border: 2px solid var(--gray-400);
+    padding: 24px;
+    margin-bottom: 10px;
+}
+
+.person,
+.community {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    padding: 12px 0;
+}
+
+.sidebar .avatar {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.personalInfo,
+.communityInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 16px;
+    line-height: 1.5;
+}
+
+.personalInfo p,
+.communityInfo p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.personalInfo small,
+.communityInfo small {
+    margin-top: 2px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gray-100);
+}
+
+@media(max-width: 1300px){
+    .sidebar{
+        display: none;
+    }
+}
