@@ -12,26 +12,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '20'
+          cache: 'npm'
+      
       - name: Install dependencies
         run: npm ci
+      
       - name: Build Next.js static export
         run: npm run build
+      
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
           cp -r out/* deploy/
-          cp -r public/* deploy/ || true
+          cp public/mockServiceWorker.js deploy/          
           touch deploy/.nojekyll
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.MODULE_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./deploy
-          user_name: yaroslavskiba
-          user_email: yaroslavskiba322@gmail.com
+          user_name: willow-sip
+          user_email: wyrrrth.sip@gmail.com
           force_orphan: true
