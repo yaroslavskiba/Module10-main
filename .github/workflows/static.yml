@@ -30,10 +30,9 @@ jobs:
         run: npm ci
 
       # 4. Сборка и экспорт Next.js
-      - name: Build and Export Next.js
-        run: |
-          npm run build
-          npm run export
+      - name: Build Next.js
+        run: npm run build
+
 
       # 5. Копируем mockServiceWorker.js в подпапку с названием репозитория
       - name: Add mockServiceWorker.js
