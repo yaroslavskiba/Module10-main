@@ -1,41 +1,54 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [main]
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
-      - name: Build Next.js static export
-        run: npm run build
-      
+
+      - name: Build and export Next.js
+        run: |
+          npm run build
+          npm run export
+
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
           cp -r out/* deploy/
-          cp public/mockServiceWorker.js deploy/          
-          touch deploy/.nojekyll
+          
+          # Получаем имя репозитория
+          REPO_NAME=${GITHUB_REPOSITORY#*/}
+          if [ -f public/mockServiceWorker.js ]; then
+            mkdir -p deploy/$REPO_NAME
+            cp public/mockServiceWorker.js deploy/$REPO_NAME/
+          fi
       
+          touch deploy/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GIHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./deploy
           user_name: yaroslavskiba
           user_email: yaroslavskiba322@gmail.com
