@@ -1,5 +1,4 @@
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches: [main]
@@ -12,7 +11,6 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       # 1. Клонируем репозиторий
       - name: Checkout repository
@@ -33,14 +31,11 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-
-      # 5. Копируем mockServiceWorker.js в подпапку с названием репозитория
+      # 5. Копируем mockServiceWorker.js в корень out
       - name: Add mockServiceWorker.js
         run: |
-          REPO_NAME=${GITHUB_REPOSITORY#*/}
-          mkdir -p out/$REPO_NAME
           if [ -f public/mockServiceWorker.js ]; then
-            cp public/mockServiceWorker.js out/$REPO_NAME/
+            cp public/mockServiceWorker.js out/
           fi
           touch out/.nojekyll
 
@@ -53,8 +48,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out        # содержимое out в корень
+          publish_dir: ./out
           user_name: yaroslavskiba
           user_email: yaroslavskiba322@gmail.com
           force_orphan: true
-
