@@ -37,6 +37,6 @@ jobs:
         with:
           github_token: ${{ secrets.GIHUB_TOKEN }}
           publish_dir: ./deploy
-          user_name: willow-sip
-          user_email: wyrrrth.sip@gmail.com
+          user_name: yaroslavskiba
+          user_email: yaroslavskiba322@gmail.com
           force_orphan: true
