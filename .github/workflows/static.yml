@@ -53,7 +53,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./out        # содержимое out в корень
           user_name: yaroslavskiba
           user_email: yaroslavskiba322@gmail.com
           force_orphan: true
+
