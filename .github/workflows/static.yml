@@ -14,37 +14,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Устанавливаем Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
+      # 3. Устанавливаем зависимости
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and export Next.js
-        run: |
-          npm run build
-          npm run export
+      # 4. Сборка Next.js (статический экспорт автоматически через next.config.js)
+      - name: Build Next.js
+        run: npm run build
 
+      # 5. Подготовка папки для деплоя
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
           cp -r out/* deploy/
-          
-          # Получаем имя репозитория
+
+          # Получаем имя репозитория (только repo-name)
           REPO_NAME=${GITHUB_REPOSITORY#*/}
+
+          # Копируем mockServiceWorker.js в подпапку с названием репозитория
           if [ -f public/mockServiceWorker.js ]; then
             mkdir -p deploy/$REPO_NAME
             cp public/mockServiceWorker.js deploy/$REPO_NAME/
           fi
-      
+
           touch deploy/.nojekyll
 
+      # 6. Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
