@@ -68,14 +68,6 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
-      # ⬇⬇⬇ ADD mockServiceWorker.js to ROOT of site ⬇⬇⬇
-      - name: Add mockServiceWorker.js and .nojekyll
-        run: |
-          mkdir -p out
-          cp public/mockServiceWorker.js out/
-          touch out/.nojekyll
-      # ⬆⬆⬆ END MSW FIX ⬆⬆⬆
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
