@@ -30,7 +30,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.MODULE_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GIHUB_TOKEN }}
           publish_dir: ./deploy 
           user_name: yaroslavskiba
           user_email: yaroslavskiba322@gmail.com
